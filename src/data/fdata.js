@@ -1,4 +1,4 @@
-export const apilink = 'https://fleksa-node.onrender.com/';
+export const apilink = 'https://fleksa-node.onrender.com';
 
 export const path = 'https://fleksa-client.vercel.app';
 
