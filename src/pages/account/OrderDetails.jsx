@@ -9,6 +9,10 @@ const OrderDetails = () => {
   const [rateshow, setRateshow] = useState(false);
   const atokon = Cookies.get('_fleksa_access_user_tokon_');
   const [orderdetlist, setOrderdetlist] = useState([]);
+  const [rating, setRating] = useState('');
+  const [foodid, setFoodId] = useState('');
+  const [resid, setResId] = useState('');
+  const [oderDetid, setOderDetId] = useState('');
 
   const his = useHistory();
   const { orderid } = useParams();
@@ -37,6 +41,7 @@ const OrderDetails = () => {
         },
       }
     );
+    // console.log(res.data);
     if (res.data.success) {
       setOrderdetlist(res.data.result);
     } else {
@@ -47,9 +52,35 @@ const OrderDetails = () => {
     getAllOrdersDetByOId();
   }, []);
 
-  const handelrate = async (fid) => {
+  const handelrate = async (fid, rid, odid) => {
     setRateshow(true);
+    setFoodId(fid);
+    setResId(rid);
+    setOderDetId(odid);
   };
+
+  const addRating = async (e) => {
+    e.preventDefault();
+    const data = {
+      ra_id: resid,
+      fo_id: foodid,
+      rat_val: rating,
+      ord_id: orderid,
+      odd_id: oderDetid,
+    };
+    // console.log(data);
+
+    const res = await axios.post(`${apilink}/api/v1/user/addrating`, data, {
+      headers: {
+        Authorization: atokon,
+      },
+    });
+    if (res.data.success) {
+      getAllOrdersDetByOId();
+      setRateshow(false);
+    }
+  };
+
   return (
     <>
       <div className="resturant">
@@ -87,12 +118,22 @@ const OrderDetails = () => {
                           <td>₹ {val.price}.00</td>
                           <td>{val.foodqty}</td>
                           <td>
-                            <button
-                              className="btn btn-dark"
-                              onClick={() => handelrate(val.foodid)}
-                            >
-                              Rate
-                            </button>
+                            {val.rating ? (
+                              <>
+                                <span class="badge badge-warning text-light">
+                                  {val.rating} <i class="bx bxs-star"></i>
+                                </span>
+                              </>
+                            ) : (
+                              <button
+                                className="btn btn-dark"
+                                onClick={() =>
+                                  handelrate(val.foodid, val.res_id, val.od_id)
+                                }
+                              >
+                                Rate
+                              </button>
+                            )}
                           </td>
                         </tr>
                       </>
@@ -111,9 +152,14 @@ const OrderDetails = () => {
             <div className="cross" onClick={() => setRateshow(false)}>
               <i class="bx bx-x"></i>
             </div>
-            <form>
+            <form onSubmit={addRating}>
               <div class="form-group">
-                <select class="form-control" id="sel1">
+                <select
+                  class="form-control"
+                  id="sel1"
+                  value={rating}
+                  onChange={(e) => setRating(e.target.value)}
+                >
                   <option value="" selected hidden>
                     --Rate Food--
                   </option>

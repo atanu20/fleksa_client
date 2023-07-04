@@ -17,6 +17,7 @@ const ItemDet = () => {
   const [preload, setPreLoad] = useState(false);
   const { foodid } = useParams();
   const alert = useAlert();
+  const [ratevalue, setRateValue] = useState('');
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -31,7 +32,7 @@ const ItemDet = () => {
 
   const getFoodById = async () => {
     const res = await axios.get(`${apilink}/api/v1/user/getFoodById/${foodid}`);
-    console.log(res.data);
+    // console.log(res.data);
     if (res.data.success) {
       setFoodById(res.data.result);
     } else {
@@ -50,6 +51,23 @@ const ItemDet = () => {
     setTimeout(() => {
       setPreLoad(false);
     }, 3000);
+  }, [foodid]);
+
+  const getratingbyFoodid = async (ffid) => {
+    const res = await axios.get(
+      `${apilink}/api/v1/user/getratingbyFoodid/${ffid}`
+    );
+    // console.log(res.data);
+    if (res.data.success && res.data?.result.length > 0) {
+      setRateValue(res.data.result[0].rating_val);
+    }
+  };
+
+  useEffect(() => {
+    if (foodid) {
+      setRateValue('');
+      getratingbyFoodid(foodid);
+    }
   }, [foodid]);
 
   return (
@@ -89,9 +107,11 @@ const ItemDet = () => {
                   <div className="col-md-6 col-12 mb-3">
                     <h1>{foodById[0].title}</h1>
                     <h5>{foodById[0].name}</h5>
-                    <span class="badge badge-warning text-light">
-                      4.5 <i class="bx bxs-star"></i>
-                    </span>
+                    {ratevalue && (
+                      <span class="badge badge-warning text-light">
+                        {ratevalue.toFixed(1)} <i class="bx bxs-star"></i>
+                      </span>
+                    )}
                     <p>{foodById[0].description}</p>
                     <h3>₹{foodById[0].price}.00 </h3>
                     <div className="">

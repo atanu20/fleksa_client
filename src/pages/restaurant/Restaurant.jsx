@@ -20,6 +20,7 @@ const Restaurant = () => {
   const getFavRestaurants = async () => {
     setPreLoad(true);
     const res = await axios.get(`${apilink}/api/v1/user/getFavRestaurants`);
+    // console.log(res.data);
     if (res.data.success) {
       if (food?.length > 0) {
         let arr = res.data.result.filter(

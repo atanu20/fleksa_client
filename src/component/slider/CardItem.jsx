@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { apilink, path } from '../../data/fdata';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
@@ -19,7 +19,7 @@ const CardItem = ({
 }) => {
   const atokon = Cookies.get('_fleksa_access_user_tokon_');
   const alert = useAlert();
-
+  const [ratevalue, setRateValue] = useState('');
   const { addtocart } = useContext(DataContext);
 
   const addwishlist = async (id) => {
@@ -46,6 +46,22 @@ const CardItem = ({
     }
   };
 
+  const getratingbyFoodid = async (ffid) => {
+    const res = await axios.get(
+      `${apilink}/api/v1/user/getratingbyFoodid/${ffid}`
+    );
+    // console.log(res.data);
+    if (res.data.success && res.data?.result.length > 0) {
+      setRateValue(res.data.result[0].rating_val);
+    }
+  };
+
+  useEffect(() => {
+    if (f_id) {
+      getratingbyFoodid(f_id);
+    }
+  }, []);
+
   return (
     <>
       <div className="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
@@ -54,13 +70,17 @@ const CardItem = ({
           <NavLink to={`/food/${f_id}`} className="p-2 link_card">
             <h5>
               {title} &nbsp;{' '}
-              <span class="badge badge-warning text-light">
-                4.5 <i class="bx bxs-star"></i>
-              </span>
+              {ratevalue && (
+                <span class="badge badge-warning text-light">
+                  {ratevalue.toFixed(1)} <i class="bx bxs-star"></i>
+                </span>
+              )}
             </h5>
-            <p className="mer-top">
-              <b>{sname}</b>
-            </p>
+            <NavLink to={`/restaurants/${re_id}`}>
+              <p className="mer-top">
+                <b>{sname}</b>
+              </p>
+            </NavLink>
             <p className="m-0"> ₹{price}.00</p>
             <p>{description}</p>
           </NavLink>
