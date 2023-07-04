@@ -159,6 +159,7 @@ const OrderDetails = () => {
                   id="sel1"
                   value={rating}
                   onChange={(e) => setRating(e.target.value)}
+                  required
                 >
                   <option value="" selected hidden>
                     --Rate Food--
