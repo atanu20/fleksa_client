@@ -1,6 +1,6 @@
 export const apilink = 'https://fleksa-node.onrender.com/';
 
-export const path = 'https://fleksa-app.netlify.app';
+export const path = 'https://fleksa-client.vercel.app';
 
 export const banarlist = [
   {
