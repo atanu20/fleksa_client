@@ -1,0 +1,40 @@
+.resturant{
+   width: 100%;
+    min-height: 100vh;
+    padding-top: 70px;
+}
+.filter{
+    width: 150px;
+}
+.det_img{
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+}
+.cart_inp{
+    width: 50px;
+    height: 37px;
+    text-align: center;
+    margin: 2px;
+    padding-bottom: 2px;
+   
+}
+.cart_sm_img{
+    width: 70px;
+    height: 80px;
+    object-fit: cover;
+}
+.cart_link_item{
+    color: black;
+}
+.cart_link_item:hover {
+color: black;
+text-decoration: none;
+}
+@media (max-width:850px) {
+    .resturant{
+        padding-top: 145px;
+    }
+
+
+}

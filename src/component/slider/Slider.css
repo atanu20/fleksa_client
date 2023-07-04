@@ -1,0 +1,169 @@
+.top__rate{
+    width: 100%;
+    height: auto;
+    background-color: #0f0f0f;
+    padding: 35px 0;
+}
+.top__rate h2{
+    color:white;
+    font-size: 30px;
+}
+
+
+  .top__rate{
+    /* width: 100px;
+    height: 150px; */
+    position: relative;
+   
+    
+  }
+  .top__rate img{
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+   
+    
+
+  }
+  .top__icon__div a{
+    display: none;
+  }
+  
+
+ .top_rate_nav_link:hover .top__icon__div{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top:0;
+  left: 0;
+  background: rgba(0,0,0,0.5);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.dd_flex{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dd_flex a{
+  font-size: 30px;
+  color: #f4e21d;
+}
+.d_flex{
+  display: flex;
+  
+}
+
+
+.card__box{
+  width: 100%;
+  min-height: auto;
+  padding: 50px 0;
+  background-color: #0f0f0f;
+}
+.card__box .card{
+  background: #0f0f0f;
+  /* border: 2px solid white; */
+  border-radius: 10px;
+  
+}
+.card__box  a:hover{
+text-decoration: none !important;
+}
+
+.card__box .card img{
+  width: 100%;
+  height: 250px;
+  /* border-radius: 15px; */
+  border-radius: 10px;
+  object-fit:unset;
+ 
+}
+
+
+
+
+
+
+
+.top_rate_nav_link:hover a{
+    display: block;
+}
+
+
+
+
+
+
+.top__rate .swiper-slide
+  {
+    width: 15%;
+  }
+.link_card{
+  color:black;
+}
+.link_card:hover{
+  color: #000;
+  text-decoration: none;
+}
+
+.cardlist{
+  width: 100%;
+  padding: 50px 0;
+}
+ .card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.cardlist .card p , .resturant .card p {
+  display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+
+
+
+
+
+@media (max-width:1000px) {
+    .top__rate .swiper-slide
+    {
+      width: 20%;
+    }
+    
+  }
+
+  @media (max-width:800px) {
+    .top__rate .swiper-slide
+    {
+      width: 25%;
+    }
+    
+  }
+
+  @media (max-width:550px) {
+    .top__rate .swiper-slide
+    {
+      width: 30%;
+    }
+    
+  }
+  @media (max-width:400px) {
+    .top__rate .swiper-slide
+    {
+      width: 40%;
+    }
+    
+  }
+
