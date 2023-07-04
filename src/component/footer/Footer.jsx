@@ -11,7 +11,7 @@ const Footer = () => {
             Get Best Dishs
           </NavLink>
           <a
-            href="http://localhost:4552/"
+            href="https://fleksa-partner.vercel.app/"
             target="_blank"
             className="btn btn-primary text-dark m-1"
           >
